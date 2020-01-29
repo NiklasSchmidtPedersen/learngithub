@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="da" dir="ltr">
+  <title>Niklas S. Pedersen Portfolio</title>
+  <link rel="stylesheet" type="text/css" href="baagø-mockup-style.css">
+  <link rel="icon" href="billeder/logo-fane.svg" type="image/gif" sizes="16x16">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+</head>
+
+<body>
+  <!---Navigation----->
+  <header>
+    <nav>
+      <a href="index.html"><img src="billeder/logo.svg" width="300px" height="60px"></a>
+      <ul>
+        <li><a href="index.html">Forside</a></li>
+        <li><a href="case.html">Cases</a></li>
+        <li><a href="kontakt.html">Om mig</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!--------Case------------>
+  <section id="case">
+    <section class="w50">
+      <h1>Baagø Mockup</h1>
+      <h2>Projekt- og procesbeskrivelse:</h2>
+      <p>I dette projekt arbejde jeg sammen med Emma og Abdul. Vi startede med at besøge Baagøs hjemmeside for at finde ud af hvad der skulle opdateres på hjemmesiden, efter at have lavet en god research omkring Baagøs hjemmeside og hvad de havde af
+        ydelser på deres hjemmeside, begyndte vi at udvikle på et mockup til dem.
+        <br>
+        Vi startede med at undersøge lidt omkring hvad der kunne laves på Baagø mockup. Vi fandt ud af at vi skulle lave en mere moderne hjemmeside for Baagø, hvor den også kunne være pæn til mobilen og tablet og ikke kun fungere til computer.
+        <br>
+        Efter at have udviklet et mockup, begyndte vi at skrive tekster og finde billeder som også kunne bruges til mockuppet.
+      </p>
+      <h2>Hvad gik godt og skidt?</h2>
+      <p>Det som gik skidt var at vi havde svært ved at samarbejde i starten, men jo længere vi kom i processen jo bedre blev vi til at samarbejde.
+        Derudover havde vi svært ved at blive enige om hvordan mockuppet til Baagø skulle se ud, da vi alle sammen havde gode ideer til hvad der skulle være på siden.
+        <br>
+        <br>
+        Det som gik godt var at vi var meget effektive, vi holdt alle vores aftaler og lavede de opgaver som vi hver især var bedst til. Derudover fik vi lavet et meget flot og præsentabelt mockup som kunne sendes til Baagø.
+      </p>
+      <h2>Refleksion:</h2>
+      <p>I dette projekt har jeg lært at udarbejde et flot mockup og redesign af hjemmeside ved at benytte
+        Adobe XD, derudover er jeg også blevet bedre til at kommunikere og samarbejde i grupper fremfor at arbejde indivduel.
+        Jeg har også fået rigtig god forståelse for Adobe Illustrator og InDesign ved dette projekt, da der blev lavet meget grafisk arbejde til dette projekt.
+        I dette projekt har jeg også lært hvordan man skal analysere hjemmesider, når der skal laves redesign af hjemmesider, hvor man finder det gode og det
+        dårlige i en hjemmeside og tager det gode med til den nye hjemmeside.
+        <br>
+        Jeg synes dette projekt har været rigtigt fedt fordi det har været et projekt som har haft min store interesse hele vejen igennem, dvs. at mit drømmejob er at arbejde med redesign af hjemmesider og platforme.
+      </p>
+    </section>
+  </section>
+  <!---TEST--->
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    .img-comp-container {
+      position: relative;
+      height: 200px;
+      margin-bottom: 458px;
+      margin-left: 100px;
+      /*should be the same height as the images*/
+    }
+
+    .img-comp-img {
+      position: absolute;
+      width: auto;
+      height: auto;
+      overflow: hidden;
+    }
+
+    .img-comp-img img {
+      display: block;
+      vertical-align: middle;
+    }
+
+    .img-comp-slider {
+      position: absolute;
+      z-index: 9;
+      cursor: ew-resize;
+      /*set the appearance of the slider:*/
+      width: 40px;
+      height: 40px;
+      background-color: #2196F3;
+      opacity: 0.7;
+      border-radius: 50%;
+    }
+  </style>
+  <script>
+    function initComparisons() {
+      var x, i;
+      /*find all elements with an "overlay" class:*/
+      x = document.getElementsByClassName("img-comp-overlay");
+      for (i = 0; i < x.length; i++) {
+        /*once for each "overlay" element:
+        pass the "overlay" element as a parameter when executing the compareImages function:*/
+        compareImages(x[i]);
+      }
+
+      function compareImages(img) {
+        var slider, img, clicked = 0,
+          w, h;
+        /*get the width and height of the img element*/
+        w = img.offsetWidth;
+        h = img.offsetHeight;
+        /*set the width of the img element to 50%:*/
+        img.style.width = (w / 2) + "px";
+        /*create slider:*/
+        slider = document.createElement("section");
+        slider.setAttribute("class", "img-comp-slider");
+        /*insert slider*/
+        img.parentElement.insertBefore(slider, img);
+        /*position the slider in the middle:*/
+        slider.style.top = (h / 2) - (slider.offsetHeight / 2) + "px";
+        slider.style.left = (w / 2) - (slider.offsetWidth / 2) + "px";
+        /*execute a function when the mouse button is pressed:*/
+        slider.addEventListener("mousedown", slideReady);
+        /*and another function when the mouse button is released:*/
+        window.addEventListener("mouseup", slideFinish);
+        /*or touched (for touch screens:*/
+        slider.addEventListener("touchstart", slideReady);
+        /*and released (for touch screens:*/
+        window.addEventListener("touchstop", slideFinish);
+
+        function slideReady(e) {
+          /*prevent any other actions that may occur when moving over the image:*/
+          e.preventDefault();
+          /*the slider is now clicked and ready to move:*/
+          clicked = 1;
+          /*execute a function when the slider is moved:*/
+          window.addEventListener("mousemove", slideMove);
+          window.addEventListener("touchmove", slideMove);
+        }
+
+        function slideFinish() {
+          /*the slider is no longer clicked:*/
+          clicked = 0;
+        }
+
+        function slideMove(e) {
+          var pos;
+          /*if the slider is no longer clicked, exit this function:*/
+          if (clicked == 0) return false;
+          /*get the cursor's x position:*/
+          pos = getCursorPos(e)
+          /*prevent the slider from being positioned outside the image:*/
+          if (pos < 0) pos = 0;
+          if (pos > w) pos = w;
+          /*execute a function that will resize the overlay image according to the cursor:*/
+          slide(pos);
+        }
+
+        function getCursorPos(e) {
+          var a, x = 0;
+          e = e || window.event;
+          /*get the x positions of the image:*/
+          a = img.getBoundingClientRect();
+          /*calculate the cursor's x coordinate, relative to the image:*/
+          x = e.pageX - a.left;
+          /*consider any page scrolling:*/
+          x = x - window.pageXOffset;
+          return x;
+        }
+
+        function slide(x) {
+          /*resize the image:*/
+          img.style.width = x + "px";
+          /*position the slider:*/
+          slider.style.left = img.offsetWidth - (slider.offsetWidth / 2) + "px";
+        }
+      }
+    }
+  </script>
+
+  <body>
+
+    <h1 class="text">Se før og efter billeder af casen</h1>
+
+    <section class="img-comp-container">
+      <section class="img-comp-img">
+        <img src="billeder/i14.webp" width="792" height="657">
+      </section>
+      <section class="img-comp-img img-comp-overlay">
+        <img src="billeder/i15.webp" width="792" height="657">
+      </section>
+    </section>
+
+    <script>
+      /*Execute a function that will execute an image compare function for each element with the img-comp-overlay class:*/
+      initComparisons();
+    </script>
+
+
+    <a href="case.html"><button class="se-cases">Se flere cases</button></a>
+
+    <!-----Footer---->
+    <section class="footer">
+      <section class="footer-content">
+
+        <section class="footer-section about">
+          <a href="index.html"> <img border="0" alt="#" src="billeder/logo2.svg" width="300px" height="60px"></a>
+          <p class="footer-text">
+            Jeg er multimediestuderne
+            som er bosat på Nordfyn,
+            og til dagligt studere på UCL.
+            Jeg kan hjælpe virksomheder
+            med grafik og webudvikling.
+          </p>
+        </section>
+
+        <section class="footer-section links">
+          <h2>Sider</h2>
+          <hr>
+          <ul>
+            <a href="index.html">
+              <li>Forside</li>
+            </a>
+            <a href="case.html">
+              <li>Case</li>
+            </a>
+            <a href="kontakt.html">
+              <li>Om mig</li>
+            </a>
+          </ul>
+        </section>
+
+        <section class="footer-section contact-us">
+          <h2>Kontakt mig</h2>
+          <hr>
+          <section class="contact">
+            <span class="hover1"><i class="fas fa-phone" font-size:24px></i>&nbsp; +45 40 51 99 39</span><br>
+            <span class="hover2"><i class="far fa-envelope"></i> &nbsp; nikl2827@edu.ucl.dk</span>
+          </section>
+          <br>
+          <section class="socials">
+            <a href="https://www.facebook.com/niklas.schmidtpedersen" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/niklaspedersen_/" target="_blank"><i class=" fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/niklas-schmidt-pedersen-1a280a153/" target="_blank"><i class=" fab fa-linkedin-in"></i></a>
+          </section>
+          <section class="footer-bottom">
+            <hr>
+            <a href="www.Niklassp.dk" class="bottom">&copy; Niklassp.dk</a> | Made by Niklas
+          </section>
+        </section>
+      </section>
+    </section>
+  </body>
+
+</html>
